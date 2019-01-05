@@ -1,13 +1,13 @@
-package com.patterns.demo;
+package com.patterns.server_push;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class DemoApplication {
+public class ServerPushApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(DemoApplication.class, args);
+        SpringApplication.run(ServerPushApplication.class, args);
     }
 
 }
