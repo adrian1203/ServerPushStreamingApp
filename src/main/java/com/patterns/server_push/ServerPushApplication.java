@@ -8,6 +8,9 @@ public class ServerPushApplication {
 
     public static void main(String[] args) {
         SpringApplication.run(ServerPushApplication.class, args);
+
+
+        final ServiceConfig.
     }
 
 }
