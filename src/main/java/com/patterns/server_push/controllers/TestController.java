@@ -18,8 +18,6 @@ public class TestController {
     public String test() {
         return "test";
     }
-
-    @Autowired
-    private SessionHandler sessionHandler;
+    
 
 }
