@@ -1,13 +1,12 @@
 package com.patterns.server_push.controllers;
 
 
+import com.patterns.server_push.domain.SimpleMessage;
 import config.AppConfig;
 import core.SessionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "api/")
@@ -18,6 +17,16 @@ public class TestController {
     public String test() {
         return "test";
     }
-    
+
+    @CrossOrigin
+    @PostMapping("/create")
+    public ResponseEntity<SimpleMessage> createSimpleMessage(@RequestBody SimpleMessage simpleMessage) {
+
+        ResponseEntity re = ResponseEntity.ok(simpleMessage);
+        //this.zrealizowaneZleceniaService.wykonajTransakcje();
+        return re;
+
+    }
+
 
 }
