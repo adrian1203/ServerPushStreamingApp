@@ -1,10 +1,10 @@
 package com.patterns.server_push.domain;
 
 
+import factory.Notification;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import notification.Notification;
 
 import javax.persistence.*;
 import java.util.Date;

@@ -1,8 +1,10 @@
 package com.patterns.server_push.simpleMessage;
 
 
-import history.HistoryRepository;
-import notification.Notification;
+
+
+import factory.HistoryRepository;
+import factory.Notification;
 
 import java.util.ArrayList;
 import java.util.List;

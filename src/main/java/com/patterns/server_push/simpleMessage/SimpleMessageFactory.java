@@ -1,12 +1,12 @@
 package com.patterns.server_push.simpleMessage;
 
 import com.google.common.collect.ImmutableList;
-import factory.AbstractServerStreamingFactory;
-import history.HistoryRepository;
+import factory.AbstractServerStreamingConfigFactory;
+import factory.HistoryRepository;
 
 import java.util.List;
 
-public class SimpleMessageFactory extends AbstractServerStreamingFactory {
+public class SimpleMessageFactory extends AbstractServerStreamingConfigFactory {
 
     @Override
     public HistoryRepository createHistoryRepository() {
@@ -14,12 +14,12 @@ public class SimpleMessageFactory extends AbstractServerStreamingFactory {
     }
 
     @Override
-    public String createTriggerEndpoint() {
-        return ("/simple-message");
+    public List<String> createTriggerEndpoint() {
+        return ImmutableList.of("/simple-message");
     }
 
     @Override
-    public List<String> createSendToEndpoints() {
+    public List<String> createDestinyEndpoints() {
         return ImmutableList.of("/topic/simple-message");
     }
 
