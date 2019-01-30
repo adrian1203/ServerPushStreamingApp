@@ -26,5 +26,5 @@ public class ServerPushStreamingConfiguration extends BrokerConfiguration {
     public ServerPushStreamingConfiguration(SimpMessagingTemplate template) {
         super(AppConfiguration.appConfig(), template);
     }
-    
+
 }
