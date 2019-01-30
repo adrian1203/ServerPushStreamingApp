@@ -8,6 +8,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import javax.persistence.*;
+import javax.validation.constraints.Size;
 import java.util.Date;
 
 @Getter
@@ -24,12 +25,15 @@ public class SimpleMessage implements Notification {
     private Long id;
 
     @Column(name = "sender")
+    @Size(max = 50)
     private String sender;
 
     @Column(name = "receiver")
+    @Size(max = 50)
     private String receiver;
 
     @Column(name = "text")
+    @Size(max = 500)
     private String text;
 
     @Column(name = "date")
