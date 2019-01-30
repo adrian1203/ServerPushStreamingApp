@@ -26,13 +26,5 @@ public class ServerPushStreamingConfiguration extends BrokerConfiguration {
     public ServerPushStreamingConfiguration(SimpMessagingTemplate template) {
         super(AppConfiguration.appConfig(), template);
     }
-
-    @Bean
-    public NotificationHandler notificationHandler( SimpMessagingTemplate template){
-        return new NotificationHandler(AppConfig.getInstance(),template);
-    }
-    @Bean
-    public SessionHandler sessionHandler(){
-        return new SessionHandler();
-    }
+    
 }
