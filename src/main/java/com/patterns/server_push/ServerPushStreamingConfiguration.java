@@ -11,37 +11,25 @@ import core.SessionHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.messaging.Message;
 import org.springframework.messaging.MessageChannel;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
+import org.springframework.web.socket.config.annotation.EnableWebSocket;
+import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
+
 
 @Configuration
-public class ServerPushStreamingConfiguration {
+public class ServerPushStreamingConfiguration extends BrokerConfiguration {
 
-    @Bean SimpMessagingTemplate simpMessagingTemplate(){
-        return new SimpMessagingTemplate(new MessageChannel() {
-            @Override
-            public boolean send(Message<?> message, long l) {
-                return false;
-            }
-        });
-    }
-    @Bean AppConfig appConfig(){
-        return AppConfig.createSingleton(8080,
-                "/server-push",
-                ImmutableList.of(
-                        new EndpointService(new SimpleMessageFactory())
-                ));
+    @Lazy
+    public ServerPushStreamingConfiguration(SimpMessagingTemplate template) {
+        super(AppConfiguration.appConfig(), template);
     }
 
     @Bean
-    public BrokerConfiguration brokerConfiguration(AppConfig appConfig, SimpMessagingTemplate template){
-        return new BrokerConfiguration(appConfig, template);
-    }
-
-    @Bean
-    public NotificationHandler notificationHandler(AppConfig appConfig, SimpMessagingTemplate template){
-        return new NotificationHandler(appConfig,template);
+    public NotificationHandler notificationHandler( SimpMessagingTemplate template){
+        return new NotificationHandler(AppConfig.getInstance(),template);
     }
     @Bean
     public SessionHandler sessionHandler(){

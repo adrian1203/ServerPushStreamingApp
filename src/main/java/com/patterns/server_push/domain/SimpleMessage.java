@@ -1,10 +1,11 @@
 package com.patterns.server_push.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import factory.Notification;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import notification.Notification;
 
 import javax.persistence.*;
 import java.util.Date;
@@ -19,6 +20,7 @@ public class SimpleMessage implements Notification {
     @Id
     @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
     @SequenceGenerator(name = "sequenceGenerator")
+    @JsonIgnore
     private Long id;
 
     @Column(name = "sender")
