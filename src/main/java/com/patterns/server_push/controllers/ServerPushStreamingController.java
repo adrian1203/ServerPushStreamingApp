@@ -35,25 +35,14 @@ public class ServerPushStreamingController extends DefaultNotifyController {
 
     @CrossOrigin
     @PostMapping("api/create/{triggerEndpoint}")
-    public ResponseEntity<SimpleMessage> createSimpleMessage(@RequestBody SimpleMessage simpleMessage, @PathVariable String triggerEndpoint) {
-        super.handleRequest(simpleMessage, triggerEndpoint);
-
-        ResponseEntity re = ResponseEntity.ok(simpleMessage);
-        return re;
+    public void createSimpleMessage(@RequestBody SimpleMessage simpleMessage, @PathVariable String triggerEndpoint) {
+        handleRequest(simpleMessage, triggerEndpoint);
 
     }
-    @CrossOrigin
-    @GetMapping("/streaming/{triggerEndpoint}")
-    public void stream(@PathVariable String triggerEndpoint){
-        super.showHistory(triggerEndpoint);
-    }
-
     @CrossOrigin
     @GetMapping(path = "api/simple-message")
     public List<Notification> get(){
-        return AppConfig.getInstance().getEndpoint("simple-message")
-                .map(e -> e.getHistoryRepository().getHistory())
-                .orElse(Collections.emptyList());
+        return showHistory("simple-message");
     }
 
 }
