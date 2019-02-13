@@ -6,10 +6,12 @@ import config.AppConfig;
 import core.DefaultNotifyController;
 import core.NotificationHandler;
 import core.SessionHandler;
+import factory.Notification;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -45,6 +47,13 @@ public class ServerPushStreamingController extends DefaultNotifyController {
     public void stream(@PathVariable String triggerEndpoint){
         super.showHistory(triggerEndpoint);
     }
-    
+
+    @CrossOrigin
+    @GetMapping(path = "api/simple-message")
+    public List<Notification> get(){
+        return AppConfig.getInstance().getEndpoint("simple-message")
+                .map(e -> e.getHistoryRepository().getHistory())
+                .orElse(Collections.emptyList());
+    }
 
 }
