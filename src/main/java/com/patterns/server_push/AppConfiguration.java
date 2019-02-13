@@ -7,18 +7,30 @@ import config.BrokerConfiguration;
 import config.EndpointService;
 import core.NotificationHandler;
 import core.SessionHandler;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.web.socket.config.annotation.EnableWebSocketMessageBroker;
 
+
+@Configuration
 public class AppConfiguration {
 
-    static AppConfig appConfig(){
+    final
+    SimpleMessageFactory simpleMessageFactory;
+
+    @Autowired
+    public AppConfiguration(SimpleMessageFactory simpleMessageFactory) {
+        this.simpleMessageFactory = simpleMessageFactory;
+        appConfig();
+    }
+
+     AppConfig appConfig() {
         return AppConfig.createSingleton(8080,
                 "/server-push",
                 ImmutableList.of(
-                        new EndpointService(new SimpleMessageFactory())
+                        new EndpointService(simpleMessageFactory)
                 ));
     }
 

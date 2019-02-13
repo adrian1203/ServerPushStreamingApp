@@ -24,7 +24,7 @@ public class ServerPushStreamingConfiguration extends BrokerConfiguration {
 
     @Lazy
     public ServerPushStreamingConfiguration(SimpMessagingTemplate template) {
-        super(AppConfiguration.appConfig(), template);
+        super(AppConfig.getInstance(), template);
     }
 
 }
